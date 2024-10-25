@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -6,13 +10,51 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+    { title: 'Intercambio de Libros', url: '/intercambio-libros', icon: 'book' },
+    { title: 'Gestión de Grupos', url: '/gestion-grupos', icon: 'people' },
+    { title: 'Tutorías entre Pares', url: '/tutorias-pares', icon: 'school' },
+    { title: 'Préstamos de Equipos', url: '/prestamos-equipos', icon: 'laptop' }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  public labels = ['Notas', 'Trabajos'];
+  isAuthenticated: boolean = false;
+  userEmail: string | null = ''; // Para almacenar el email del usuario
+
+  constructor(
+    private authService: AuthService,
+    private afAuth: AngularFireAuth,
+    private router: Router
+  ) {
+    // Verificar el estado del usuario
+    this.authService.getUser().subscribe(user => {
+      if (user) {
+        console.log('Usuario autenticado:', user.email); // Verificar autenticación
+        this.isAuthenticated = true;
+        this.userEmail = user.email; // Obtén el email del usuario
+      } else {
+        console.log('No autenticado');
+        this.isAuthenticated = false;
+        this.userEmail = null;
+      }
+    });
+  }
+
+  // Navegar a la página de inicio de sesión
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  // Navegar a la página de registro
+  navigateToRegister() {
+    this.router.navigate(['/register']);
+  }
+
+  // Método para cerrar sesión
+  logout() {
+    this.authService.logout().then(() => {
+      this.isAuthenticated = false;
+      this.userEmail = null;
+      this.router.navigate(['/home']); // Redirige a la página principal
+    });
+  }
 }

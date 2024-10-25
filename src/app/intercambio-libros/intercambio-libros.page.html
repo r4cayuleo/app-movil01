@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button> <!-- Botón para abrir el menú en pantallas pequeñas -->
+    </ion-buttons>
+    <ion-title>Intercambio de Libros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Formulario para agregar nuevo libro -->
+  <ion-item>
+    <ion-label position="floating">Título</ion-label>
+    <ion-input [(ngModel)]="titulo" name="titulo" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-input [(ngModel)]="descripcion" name="descripcion" required></ion-input>
+  </ion-item>
+
+  <!-- Botón para subir imagen desde galería -->
+  <ion-button expand="full" (click)="subirImagenDesdeGaleria()">Subir Imagen</ion-button>
+
+  <!-- Botón para tomar una foto con la cámara -->
+  <ion-button expand="full" (click)="tomarFoto()">Tomar Foto</ion-button>
+
+  <!-- Botón para guardar el libro -->
+  <ion-button expand="full" (click)="agregarLibro()">Guardar Libro</ion-button>
+
+  <!-- Mensaje de error o éxito -->
+  <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+  <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
+
+  <!-- Lista de libros agregados -->
+  <ion-list *ngIf="libros | async as librosList">
+    <ion-item *ngFor="let libro of librosList">
+      <ion-label>
+        <h2>{{ libro.titulo }}</h2>
+        <p>{{ libro.descripcion }}</p>
+      </ion-label>
+      <ion-thumbnail slot="end">
+        <img [src]="libro.imagenURL" alt="Imagen del libro">
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
