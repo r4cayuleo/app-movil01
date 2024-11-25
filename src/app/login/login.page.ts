@@ -15,12 +15,12 @@ export class LoginPage {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  // Función onLogin para manejar el inicio de sesión
+  // Manejar el inicio de sesión
   onLogin() {
     this.authService.login(this.email, this.password)
       .then(() => {
         this.successMessage = 'Inicio de sesión exitoso. Redirigiendo...';
-        
+
         // Redirigir al home después de 2 segundos
         setTimeout(() => {
           this.router.navigate(['/home']);
@@ -30,5 +30,10 @@ export class LoginPage {
       .catch(error => {
         this.errorMessage = 'Error al iniciar sesión: ' + error.message;
       });
+  }
+
+  // Redirigir a la página de registro
+  navigateToRegister() {
+    this.router.navigate(['/register']);
   }
 }

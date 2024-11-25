@@ -1,43 +1,44 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>{{ userEmail || 'Usuario no autenticado' }}</ion-note>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <!-- Pestaña de intercambio de libros -->
+      <ion-tab-button tab="intercambio-libros" routerLink="/intercambio-libros">
+        <ion-icon name="book-outline"></ion-icon>
+        <ion-label>Libros</ion-label>
+      </ion-tab-button>
 
-          <!-- Mostrar las páginas de la app -->
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+      <!-- Pestaña de gestión de grupos -->
+      <ion-tab-button tab="gestion-grupos" routerLink="/gestion-grupos">
+        <ion-icon name="people-outline"></ion-icon>
+        <ion-label>Grupos</ion-label>
+      </ion-tab-button>
 
-          <!-- Opciones de autenticación -->
-          <ion-item *ngIf="isAuthenticated; else loginOptions">
-            <ion-label>Bienvenido, {{ userEmail }}</ion-label>
-            <ion-button (click)="logout()" expand="full">Cerrar Sesión</ion-button>
-          </ion-item>
+      <!-- Pestaña de tutorías entre pares -->
+      <ion-tab-button tab="tutorias-pares" routerLink="/tutorias-pares">
+        <ion-icon name="school-outline"></ion-icon>
+        <ion-label>Tutorías</ion-label>
+      </ion-tab-button>
 
-          <ng-template #loginOptions>
-            <ion-item>
-              <ion-button (click)="navigateToLogin()" expand="full">Iniciar Sesión</ion-button>
-              <ion-button (click)="navigateToRegister()" expand="full">Registrarse</ion-button>
-            </ion-item>
-          </ng-template>
-        </ion-list>
+      <!-- Pestaña de préstamos -->
+      <ion-tab-button tab="prestamos-equipos" routerLink="/prestamos-equipos">
+        <ion-icon name="laptop-outline"></ion-icon>
+        <ion-label>Préstamos</ion-label>
+      </ion-tab-button>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
+      <!-- Pestaña de autenticación -->
+      <ion-tab-button *ngIf="!isAuthenticated; else logoutOptions" tab="login" (click)="navigateToLogin()">
+        <ion-icon name="log-in-outline"></ion-icon>
+        <ion-label>Login</ion-label>
+      </ion-tab-button>
 
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+      <!-- Pestaña de cerrar sesión (si el usuario está autenticado) -->
+      <ng-template #logoutOptions>
+        <ion-tab-button tab="perfil">
+          <ion-icon name="person"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-tab-button>        
+      </ng-template>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-app>

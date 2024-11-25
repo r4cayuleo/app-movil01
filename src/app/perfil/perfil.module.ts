@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-import { TutoriasPageRoutingModule } from './tutorias-routing.module';
-import { TutoriasPage } from './tutorias.page';
+import { PerfilPageRoutingModule } from './perfil-routing.module';
+
+import { PerfilPage } from './perfil.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TutoriasPageRoutingModule
+    PerfilPageRoutingModule
   ],
-  declarations: [TutoriasPage]
+  declarations: [PerfilPage]
 })
-export class TutoriasPageModule {}
+export class PerfilPageModule {}

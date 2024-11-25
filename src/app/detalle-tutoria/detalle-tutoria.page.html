@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tutorias">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detalle de Tutoría</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="tutoria">
+    <ion-card-header>
+      <ion-card-title>{{ tutoria.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ tutoria.estudiantes }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Materia:</strong> {{ tutoria.materia }}</p>
+      <p><strong>Descripción:</strong> {{ tutoria.descripcion }}</p>
+      <p><strong>Horarios:</strong> {{ tutoria.horarios }}</p>
+      <p><strong>Contacto:</strong> {{ tutoria.contacto }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Comentarios</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let comentario of comentarios">
+      <ion-label>
+        <h3>{{ comentario.usuario }}</h3>
+        <p>{{ comentario.texto }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="nuevoComentario" placeholder="Escribe un comentario..."></ion-textarea>
+  </ion-item>
+  <ion-button expand="full" (click)="agregarComentario()">Agregar Comentario</ion-button>
+</ion-content>

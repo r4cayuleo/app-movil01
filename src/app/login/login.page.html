@@ -25,4 +25,9 @@
   <!-- Mensaje de error -->
   <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
 
+  <!-- Botón de registro -->
+  <ion-item lines="none">
+    <ion-label>¿No tienes una cuenta?</ion-label>
+    <ion-button fill="outline" (click)="navigateToRegister()">Registrarse</ion-button>
+  </ion-item>
 </ion-content>

@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-import { TutoriasPageRoutingModule } from './tutorias-routing.module';
-import { TutoriasPage } from './tutorias.page';
+import { DetalleLibroPageRoutingModule } from './detalle-libro-routing.module';
+
+import { DetalleLibroPage } from './detalle-libro.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TutoriasPageRoutingModule
+    DetalleLibroPageRoutingModule
   ],
-  declarations: [TutoriasPage]
+  declarations: [DetalleLibroPage]
 })
-export class TutoriasPageModule {}
+export class DetalleLibroPageModule {}

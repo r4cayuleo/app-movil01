@@ -18,19 +18,19 @@ export class AppComponent {
 
   public labels = ['Notas', 'Trabajos'];
   isAuthenticated: boolean = false;
-  userEmail: string | null = ''; // Para almacenar el email del usuario
+  userEmail: string | null = ''; // para almacenar el email del usuario
 
   constructor(
     private authService: AuthService,
     private afAuth: AngularFireAuth,
     private router: Router
   ) {
-    // Verificar el estado del usuario
+    // para verificar el estado del usuario
     this.authService.getUser().subscribe(user => {
       if (user) {
-        console.log('Usuario autenticado:', user.email); // Verificar autenticación
+        console.log('Usuario autenticado:', user.email); // autenticacion
         this.isAuthenticated = true;
-        this.userEmail = user.email; // Obtén el email del usuario
+        this.userEmail = user.email; // obtiene el email del usuario
       } else {
         console.log('No autenticado');
         this.isAuthenticated = false;
@@ -39,22 +39,22 @@ export class AppComponent {
     });
   }
 
-  // Navegar a la página de inicio de sesión
+  // para navegar a la pagina de inicio de sesion
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
 
-  // Navegar a la página de registro
+  // para navegar a la pagina de registro
   navigateToRegister() {
     this.router.navigate(['/register']);
   }
 
-  // Método para cerrar sesión
+  // para cerrar sesion
   logout() {
     this.authService.logout().then(() => {
       this.isAuthenticated = false;
       this.userEmail = null;
-      this.router.navigate(['/home']); // Redirige a la página principal
+      this.router.navigate(['/home']); // redirige a la página principal
     });
   }
 }

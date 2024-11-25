@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tutorias"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Tutoría</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nombre de la Tutoría</ion-label>
+    <ion-input [(ngModel)]="nombre" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Estudiante(s)</ion-label>
+    <ion-input [(ngModel)]="estudiantes" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-input [(ngModel)]="descripcion" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Horarios</ion-label>
+    <ion-input [(ngModel)]="horarios" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contacto</ion-label>
+    <ion-input [(ngModel)]="contacto" required></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="guardarTutoria()">Guardar Tutoría</ion-button>
+
+  <!-- Mensaje de éxito o error -->
+  <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
+</ion-content>
