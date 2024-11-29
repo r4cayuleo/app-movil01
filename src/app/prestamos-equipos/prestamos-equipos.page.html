@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Préstamos Equipos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Lista de equipos -->
+  <ion-list>
+    <ion-item 
+      *ngFor="let equipo of equipos" 
+      [color]="equipo.estado === 'Disponible' ? 'success' : 'danger'" 
+      (click)="verDetallesEquipo(equipo.id)">
+      <ion-label>
+        <h2>{{ equipo.nombre }}</h2>
+        <p>{{ equipo.tipo }} - {{ equipo.marca }}</p>
+        <p>Estado: {{ equipo.estado }}</p>
+      </ion-label>
+      <!-- Botón para eliminar equipo (si el usuario es el creador) -->
+      <ion-button slot="end" color="danger" (click)="eliminarEquipo(equipo.id); $event.stopPropagation()" *ngIf="esPropietario(equipo)">
+        Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botón flotante para agregar un nuevo equipo -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/prestamos-nuevo">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

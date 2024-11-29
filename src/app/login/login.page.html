@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onLogin()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
+  </form>
+
+  <!-- Mensaje de éxito -->
+  <ion-text color="success" *ngIf="successMessage">{{ successMessage }}</ion-text>
+
+  <!-- Mensaje de error -->
+  <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+
+  <!-- Botón de registro -->
+  <ion-item lines="none">
+    <ion-label>¿No tienes una cuenta?</ion-label>
+    <ion-button fill="outline" (click)="navigateToRegister()">Registrarse</ion-button>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Datos del Usuario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ userEmail }}</p>
+      <p><strong>Estado:</strong> {{ isAuthenticated ? 'Autenticado' : 'No autenticado' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón para cerrar sesión -->
+  <ion-button expand="full" color="danger" (click)="cerrarSesion()">
+    Cerrar Sesión
+  </ion-button>
+</ion-content>
