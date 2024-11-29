@@ -15,6 +15,9 @@ const routes: Routes = [
   { path: 'detalle-tutoria/:id', loadChildren: () => import('./detalle-tutoria/detalle-tutoria.module').then(m => m.DetalleTutoriaPageModule) },
   { path: 'perfil', loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilPageModule) },
   { path: 'tutorias-pares', loadChildren: () => import('./tutorias/tutorias.module').then(m => m.TutoriasPageModule) },
+  { path: 'prestamos-equipos', loadChildren: () => import('./prestamos-equipos/prestamos-equipos.module').then(m => m.PrestamosEquiposPageModule) },
+  { path: 'prestamos-nuevo', loadChildren: () => import('./prestamos-nuevo/prestamos-nuevo.module').then(m => m.PrestamosNuevoPageModule) },
+  { path: 'prestamos-detalle/:id', loadChildren: () => import('./prestamos-detalle/prestamos-detalle.module').then(m => m.PrestamosDetallePageModule) },
 
 ];
 
